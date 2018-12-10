@@ -1,0 +1,13 @@
+{
+  "type": "mongodb",
+  "host": "localhost",
+  "database": "books",
+  "synchronize": true,
+  "logging": false,
+  "entities": [
+    "src/models/entity/*.ts"
+  ],
+  "cli": {
+    "entitiesDir": "src/models/entity"
+  }
+}
