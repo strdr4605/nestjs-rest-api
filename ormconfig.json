@@ -5,7 +5,7 @@
   "synchronize": true,
   "logging": false,
   "entities": [
-    "src/models/entity/*.ts"
+    "src/models/entity/*.model.ts"
   ],
   "cli": {
     "entitiesDir": "src/models/entity"
