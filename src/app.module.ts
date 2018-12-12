@@ -6,9 +6,10 @@ import { BooksController } from './books/books.controller';
 import { BooksService } from './books/books/books.service';
 import { BooksModule } from './books/books.module';
 import { AuthorsModule } from './authors/authors.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [BooksModule, AuthorsModule],
+  imports: [TypeOrmModule.forRoot(), BooksModule, AuthorsModule],
   controllers: [AppController],
   providers: [AppService, DbService],
 })

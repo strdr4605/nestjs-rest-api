@@ -1,7 +1,8 @@
-import { Get, Controller, Post, Body } from '@nestjs/common';
+import { Get, Controller, Post, Body, Put, Param, Delete } from '@nestjs/common';
 import { plainToClass } from 'class-transformer';
 import { BookModel } from '../models/entity/book.model';
 import { BooksService } from './books/books.service';
+import { ObjectID } from 'typeorm';
 
 @Controller('books')
 export class BooksController {
@@ -13,8 +14,19 @@ export class BooksController {
   }
   
   @Post('create')
-  create(@Body() bookJson: string): BookModel {
+  create(@Body() bookJson: string): Promise<BookModel> {
     let books = plainToClass(BookModel, bookJson);
     return this.booksService.create(books);
+  }
+
+  @Put('update/:id')
+  update(@Param('id') id: ObjectID, @Body() bookJson: string): Promise<BookModel> {
+    let book = plainToClass(BookModel, bookJson);
+    return this.booksService.update(id, book);
+  }
+
+  @Delete('delete/:id')
+  delete(@Param('id') id: ObjectID): Promise<BookModel> {
+    return this.booksService.delete(id);
   }
 }
