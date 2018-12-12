@@ -1,4 +1,4 @@
-import { Entity, Column } from 'typeorm';
+import { Entity, Column, ObjectIdColumn, ObjectID } from 'typeorm';
 import { GenericModel } from './generic.model';
 
 @Entity()
@@ -7,8 +7,8 @@ export class BookModel extends GenericModel {
   @Column()
   title: string;
 
-  @Column()
-  author: string;
+  @ObjectIdColumn()
+  author: ObjectID;
 
   @Column()
   iban: string;
