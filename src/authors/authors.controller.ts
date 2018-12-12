@@ -8,12 +8,12 @@ export class AuthorsController {
   constructor(private readonly authorsService: AuthorsService){}
 
   @Get('read')
-  read(): any {
+  read(): Promise<AuthorModel[]> {
     return this.authorsService.read();
   }
   
   @Post('create')
-  create(@Body() authorJson: string): any {
+  create(@Body() authorJson: string): AuthorModel {
     let authors = plainToClass(AuthorModel, authorJson);
     return this.authorsService.create(authors);
   }

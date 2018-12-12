@@ -8,12 +8,12 @@ export class BooksController {
   constructor(private readonly booksService: BooksService){}
   
   @Get('read')
-  read(): any {
+  read(): Promise<BookModel[]> {
     return this.booksService.read();
   }
   
   @Post('create')
-  create(@Body() bookJson: string): any {
+  create(@Body() bookJson: string): BookModel {
     let books = plainToClass(BookModel, bookJson);
     return this.booksService.create(books);
   }

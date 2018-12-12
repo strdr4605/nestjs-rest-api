@@ -20,7 +20,7 @@ export class BooksService {
     return newBook;
   }
 
-  read(): Promise<any> {
+  read(): Promise<BookModel[]> {
     return new Promise(async (resolve) => {
       let bookRepository = getMongoManager('default').getMongoRepository(BookModel);
       const allBooks = await bookRepository.find();
@@ -29,7 +29,7 @@ export class BooksService {
     });
   }
 
-  update(id): Promise<any> {
+  update(id): Promise<BookModel> {
     return new Promise( async (resolve) => {
       let bookRepository = getMongoManager('default').getMongoRepository(BookModel);
       let bookToUpdate = await bookRepository.findOne(id);
@@ -40,7 +40,7 @@ export class BooksService {
     });
   }
 
-  delete(id): Promise<any> {
+  delete(id): Promise<BookModel> {
     return new Promise( async (resolve) => {
       let bookRepository = getMongoManager('default').getMongoRepository(BookModel);
       let bookToRemove = await bookRepository.findOne(id);

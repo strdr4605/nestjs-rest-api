@@ -5,13 +5,13 @@ import { AuthorModel } from 'src/models/entity/author.model';
 @Injectable()
 export class AuthorsService {
 
-  create(newAuthor: AuthorModel): any {
+  create(newAuthor: AuthorModel): AuthorModel {
     getMongoManager('default').getMongoRepository(AuthorModel).save(newAuthor);
     console.log("author has been saved: ", newAuthor);
     return newAuthor;
   }
 
-  read(): Promise<any> {
+  read(): Promise<AuthorModel[]> {
     return new Promise(async (resolve) => {
       let authorRepository = getMongoManager('default').getMongoRepository(AuthorModel);
       const allAuthors = await authorRepository.find();
@@ -20,7 +20,7 @@ export class AuthorsService {
     });
   }
 
-  update(id): Promise<any> {
+  update(id): Promise<AuthorModel> {
     return new Promise( async (resolve) => {
       let authorRepository = getMongoManager('default').getMongoRepository(AuthorModel);
       let authorToUpdate = await authorRepository.findOne(id);
@@ -31,7 +31,7 @@ export class AuthorsService {
     });
   }
 
-  delete(id): Promise<any> {
+  delete(id): Promise<AuthorModel> {
     return new Promise( async (resolve) => {
       let authorRepository = getMongoManager('default').getMongoRepository(AuthorModel);
       let bookToRemove = await authorRepository.findOne(id);
