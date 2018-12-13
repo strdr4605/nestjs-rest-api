@@ -2,11 +2,12 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AuthorsService } from './authors.service';
 import { AuthorModel } from '../../models/entity/author.model';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { expect } from 'chai';
 
 describe('AuthorsService', () => {
   let service: AuthorsService;
   
-  beforeAll(async () => {
+  before(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [TypeOrmModule.forRoot(), TypeOrmModule.forFeature([AuthorModel])],
       providers: [AuthorsService],
@@ -14,6 +15,6 @@ describe('AuthorsService', () => {
     service = module.get<AuthorsService>(AuthorsService);
   });
   it('should be defined', () => {
-    expect(service).toBeDefined();
+    expect(service).to.not.be.undefined;
   });
 });

@@ -3,19 +3,21 @@ import { BooksController } from './books.controller';
 import { BooksService } from './books/books.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BookModel } from '../models/entity/book.model';
+import { expect } from 'chai';
 
 describe('Books Controller', () => {
   let module: TestingModule;
   
-  beforeAll(async () => {
+  before(async () => {
     module = await Test.createTestingModule({
       imports: [TypeOrmModule.forRoot(), TypeOrmModule.forFeature([BookModel])],
       controllers: [BooksController],
       providers: [BooksService],
     }).compile();
   });
-  it('should be defined', () => {
+  it('should be defined', (done) => {
     const controller: BooksController = module.get<BooksController>(BooksController);
-    expect(controller).toBeDefined();
+    expect(controller).to.not.be.undefined;
+    done();
   });
 });

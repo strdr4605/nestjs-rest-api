@@ -1,16 +1,17 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { DbService } from './db.service';
+import { expect } from 'chai';
 
 describe('DbService', () => {
   let service: DbService;
   
-  beforeAll(async () => {
+  before(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [DbService],
     }).compile();
     service = module.get<DbService>(DbService);
   });
   it('should be defined', () => {
-    expect(service).toBeDefined();
+    expect(service).to.not.be.undefined;
   });
 });
