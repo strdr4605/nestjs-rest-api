@@ -2,7 +2,16 @@ import { Controller, Get, Post, Body, Put, Delete, Param } from '@nestjs/common'
 import { AuthorsService } from '../service/authors.service';
 import { AuthorModel } from '../../models/entity/author.entity';
 import { plainToClass } from 'class-transformer';
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiResponse,
+  ApiUseTags,
+} from '@nestjs/swagger';
 
+
+// @ApiBearerAuth()
+// @ApiUseTags('authors')
 @Controller('authors')
 export class AuthorsController {
   constructor(private readonly authorsService: AuthorsService){}
@@ -13,6 +22,12 @@ export class AuthorsController {
   }
   
   @Post()
+  // @ApiOperation({ title: 'Create author' })
+  // @ApiResponse({
+  //   status: 201,
+  //   description: 'The record has been successfully created.',
+  // })
+  // @ApiResponse({ status: 403, description: 'Forbidden.' })
   create(@Body() authorJson: string): Promise<AuthorModel> {
     const authors = plainToClass(AuthorModel, authorJson);
     return this.authorsService.create(authors);
