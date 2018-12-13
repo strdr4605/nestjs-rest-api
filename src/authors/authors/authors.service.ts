@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Repository, ObjectID } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { AuthorModel } from 'src/models/entity/author.model';
+import { AuthorModel } from '../../models/entity/author.model';
 
 @Injectable()
 export class AuthorsService {
