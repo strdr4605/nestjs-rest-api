@@ -1,5 +1,5 @@
 import { Entity, Column, ObjectIdColumn, ObjectID } from 'typeorm';
-import { GenericModel } from './generic.model';
+import { GenericModel } from './generic.entity';
 import { IsDate, MinLength, IsString, IsMongoId } from 'class-validator';
 
 @Entity()

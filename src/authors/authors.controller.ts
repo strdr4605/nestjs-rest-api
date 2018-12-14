@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Put, Delete, Param } from '@nestjs/common';
 import { AuthorsService } from './authors/authors.service';
-import { AuthorModel } from 'src/models/entity/author.model';
+import { AuthorModel } from 'src/models/entity/author.entity';
 import { plainToClass } from 'class-transformer';
 
 @Controller('authors')
