@@ -8,24 +8,24 @@ import { ObjectID } from 'typeorm';
 export class AuthorsController {
   constructor(private readonly authorsService: AuthorsService){}
 
-  @Get('read')
+  @Get()
   read(): Promise<AuthorModel[]> {
     return this.authorsService.read();
   }
   
-  @Post('create')
+  @Post()
   create(@Body() authorJson: string): Promise<AuthorModel> {
     let authors = plainToClass(AuthorModel, authorJson);
     return this.authorsService.create(authors);
   }
   
-  @Put('update/:id')
+  @Put(':id')
   update(@Param('id') id: ObjectID, @Body() authorJson: string): Promise<AuthorModel> {
     let book = plainToClass(AuthorModel, authorJson);
     return this.authorsService.update(id, book);
   }
 
-  @Delete('delete/:id')
+  @Delete(':id')
   delete(@Param('id') id: ObjectID): Promise<AuthorModel> {
     return this.authorsService.delete(id);
   }
