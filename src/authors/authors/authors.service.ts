@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Repository, ObjectID } from 'typeorm';
+import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AuthorModel } from 'src/models/entity/author.model';
 
@@ -20,14 +20,14 @@ export class AuthorsService {
     return await this.authorsRepository.find();
   }
 
-  async update(id: ObjectID, newAuthor): Promise<AuthorModel> {
+  async update(id: string, newAuthor): Promise<AuthorModel> {
     let authorToUpdate = await this.authorsRepository.findOne(id);
     if (!authorToUpdate) return;
     let updatedAuthor = {...authorToUpdate, ...newAuthor, updatedAt: new Date()};
     return await this.authorsRepository.save(updatedAuthor);
   }
 
-  async delete(id: ObjectID): Promise<AuthorModel> {
+  async delete(id: string): Promise<AuthorModel> {
     let authorToRemove = await this.authorsRepository.findOne(id);
     if (!authorToRemove) return;
     return await this.authorsRepository.remove(authorToRemove);
