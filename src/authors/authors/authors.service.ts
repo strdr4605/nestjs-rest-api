@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { AuthorModel } from 'src/models/entity/author.model';
+import { AuthorModel } from 'src/models/entity/author.entity';
 
 @Injectable()
 export class AuthorsService {
@@ -11,8 +11,6 @@ export class AuthorsService {
   ){}
 
   async create(newAuthor: AuthorModel): Promise<AuthorModel> {
-    newAuthor.createdAt = new Date();
-    newAuthor.updatedAt = new Date();
     return await this.authorsRepository.save(newAuthor);
   }
 
@@ -23,7 +21,7 @@ export class AuthorsService {
   async update(id: string, newAuthor): Promise<AuthorModel> {
     let authorToUpdate = await this.authorsRepository.findOne(id);
     if (!authorToUpdate) return;
-    let updatedAuthor = {...authorToUpdate, ...newAuthor, updatedAt: new Date()};
+    let updatedAuthor = {...authorToUpdate, ...newAuthor};
     return await this.authorsRepository.save(updatedAuthor);
   }
 

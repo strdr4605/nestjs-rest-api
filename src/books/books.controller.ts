@@ -1,6 +1,6 @@
 import { Get, Controller, Post, Body, Put, Param, Delete } from '@nestjs/common';
 import { plainToClass } from 'class-transformer';
-import { BookModel } from '../models/entity/book.model';
+import { BookModel } from '../models/entity/book.entity';
 import { BooksService } from './books/books.service';
 
 @Controller('books')

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { BookModel } from 'src/models/entity/book.model';
+import { BookModel } from 'src/models/entity/book.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
@@ -11,9 +11,6 @@ export class BooksService {
   ){}
 
   async create(newBook: BookModel): Promise<BookModel> {
-    newBook.createdAt = new Date();
-    newBook.updatedAt = new Date();
-    newBook.publishedAt = new Date(newBook.publishedAt);
     return await this.booksRepository.save(newBook);
   }
 
@@ -24,7 +21,7 @@ export class BooksService {
   async update(id: string, newBook: BookModel): Promise<BookModel> {
     let bookToUpdate = await this.booksRepository.findOne(id);
     if (!bookToUpdate) return;
-    let updatedBook = {...bookToUpdate, ...newBook, updatedAt: new Date()};
+    let updatedBook = {...bookToUpdate, ...newBook};
     return await this.booksRepository.save(updatedBook);
   }
 

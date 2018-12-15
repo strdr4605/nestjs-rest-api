@@ -1,5 +1,5 @@
 import { Entity, Column } from 'typeorm';
-import { GenericModel } from './generic.model';
+import { GenericModel } from './generic.entity';
 import { IsString, IsDate, MinLength } from 'class-validator';
 
 @Entity()
