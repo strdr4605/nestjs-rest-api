@@ -14,13 +14,13 @@ export class AuthorsController {
   
   @Post()
   create(@Body() authorJson: string): Promise<AuthorModel> {
-    let authors = plainToClass(AuthorModel, authorJson);
+    const authors = plainToClass(AuthorModel, authorJson);
     return this.authorsService.create(authors);
   }
   
   @Put(':id')
   update(@Param('id') id: string, @Body() authorJson: string): Promise<AuthorModel> {
-    let book = plainToClass(AuthorModel, authorJson);
+    const book = plainToClass(AuthorModel, authorJson);
     return this.authorsService.update(id, book);
   }
 

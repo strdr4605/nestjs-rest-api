@@ -14,13 +14,13 @@ export class BooksController {
   
   @Post()
   create(@Body() bookJson: string): Promise<BookModel> {
-    let books = plainToClass(BookModel, bookJson);
+    const books = plainToClass(BookModel, bookJson);
     return this.booksService.create(books);
   }
 
   @Put(':id')
   update(@Param('id') id: string, @Body() bookJson: string): Promise<BookModel> {
-    let book = plainToClass(BookModel, bookJson);
+    const book = plainToClass(BookModel, bookJson);
     return this.booksService.update(id, book);
   }
 

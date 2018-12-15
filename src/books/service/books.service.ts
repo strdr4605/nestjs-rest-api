@@ -19,14 +19,14 @@ export class BooksService {
   }
 
   async update(id: string, newBook: BookModel): Promise<BookModel> {
-    let bookToUpdate = await this.booksRepository.findOne(id);
+    const bookToUpdate = await this.booksRepository.findOne(id);
     if (!bookToUpdate) return;
-    let updatedBook = {...bookToUpdate, ...newBook};
+    const updatedBook = {...bookToUpdate, ...newBook};
     return await this.booksRepository.save(updatedBook);
   }
 
   async delete(id: string): Promise<BookModel> {
-    let bookToRemove = await this.booksRepository.findOne(id);
+    const bookToRemove = await this.booksRepository.findOne(id);
     if (!bookToRemove) return;
     return await this.booksRepository.remove(bookToRemove);
   }

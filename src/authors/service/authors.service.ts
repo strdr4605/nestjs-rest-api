@@ -19,14 +19,14 @@ export class AuthorsService {
   }
 
   async update(id: string, newAuthor): Promise<AuthorModel> {
-    let authorToUpdate = await this.authorsRepository.findOne(id);
+    const authorToUpdate = await this.authorsRepository.findOne(id);
     if (!authorToUpdate) return;
-    let updatedAuthor = {...authorToUpdate, ...newAuthor};
+    const updatedAuthor = {...authorToUpdate, ...newAuthor};
     return await this.authorsRepository.save(updatedAuthor);
   }
 
   async delete(id: string): Promise<AuthorModel> {
-    let authorToRemove = await this.authorsRepository.findOne(id);
+    const authorToRemove = await this.authorsRepository.findOne(id);
     if (!authorToRemove) return;
     return await this.authorsRepository.remove(authorToRemove);
   }
