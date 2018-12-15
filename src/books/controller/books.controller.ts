@@ -7,10 +7,11 @@ import {
   ApiOperation,
   ApiResponse,
   ApiUseTags,
+  ApiImplicitBody,
 } from '@nestjs/swagger';
 
-// @ApiBearerAuth()
-// @ApiUseTags('books')
+@ApiBearerAuth()
+@ApiUseTags('books')
 @Controller('books')
 export class BooksController {
   constructor(private readonly booksService: BooksService){}
@@ -21,18 +22,15 @@ export class BooksController {
   }
   
   @Post()
-  // @ApiOperation({ title: 'Create book' })
-  // @ApiResponse({
-  //   status: 201,
-  //   description: 'The record has been successfully created.',
-  // })
-  // @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiOperation({ title: 'Create book' })
+  @ApiImplicitBody({name: 'Book', type: BookModel})
   create(@Body() bookJson: string): Promise<BookModel> {
     const books = plainToClass(BookModel, bookJson);
     return this.booksService.create(books);
   }
 
   @Put(':id')
+  @ApiImplicitBody({name: 'Book', type: BookModel})
   update(@Param('id') id: string, @Body() bookJson: string): Promise<BookModel | undefined> {
     const book = plainToClass(BookModel, bookJson);
     return this.booksService.update(id, book);

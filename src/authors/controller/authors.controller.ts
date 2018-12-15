@@ -7,11 +7,12 @@ import {
   ApiOperation,
   ApiResponse,
   ApiUseTags,
+  ApiImplicitBody,
 } from '@nestjs/swagger';
 
 
-// @ApiBearerAuth()
-// @ApiUseTags('authors')
+@ApiBearerAuth()
+@ApiUseTags('authors')
 @Controller('authors')
 export class AuthorsController {
   constructor(private readonly authorsService: AuthorsService){}
@@ -22,18 +23,16 @@ export class AuthorsController {
   }
   
   @Post()
-  // @ApiOperation({ title: 'Create author' })
-  // @ApiResponse({
-  //   status: 201,
-  //   description: 'The record has been successfully created.',
-  // })
-  // @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiOperation({ title: 'Create author' })
+  @ApiImplicitBody({name: 'Author', type: AuthorModel})
   create(@Body() authorJson: string): Promise<AuthorModel> {
     const authors = plainToClass(AuthorModel, authorJson);
     return this.authorsService.create(authors);
   }
   
   @Put(':id')
+  @ApiImplicitBody({name: 'Author', type: AuthorModel})
+  @ApiOperation({ title: 'Update author' })
   update(@Param('id') id: string, @Body() authorJson: string): Promise<AuthorModel | undefined> {
     const book = plainToClass(AuthorModel, authorJson);
     return this.authorsService.update(id, book);

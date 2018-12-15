@@ -1,23 +1,25 @@
 import { Entity, Column } from 'typeorm';
 import { GenericModel } from './generic.entity';
 import { IsString, IsDate, MinLength } from 'class-validator';
+import { ApiModelProperty } from '@nestjs/swagger';
+
 
 @Entity()
 export class AuthorModel extends GenericModel {
 
-  // @ApiModelProperty()
+  @ApiModelProperty()
   @Column()
   @IsString()
   @MinLength(3)
   firstName: string;
 
-  // @ApiModelProperty()
+  @ApiModelProperty()
   @Column()
   @IsString()
   @MinLength(3)
   lastName: string;
 
-  // @ApiModelProperty()
+  @ApiModelProperty()
   @Column()
   @IsDate()
   birthday: Date;
