@@ -7,7 +7,7 @@ export class GenericModel {
   @ApiModelProperty()
   @ObjectIdColumn()
   @IsMongoId()
-  id: ObjectID;
+  _id: ObjectID;
 
   @ApiModelProperty({required: false, readOnly: true})
   @Column()
