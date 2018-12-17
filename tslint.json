@@ -1,55 +1,36 @@
 {
-    "defaultSeverity": "error",
-    "extends": [
-        "tslint:recommended"
-    ],
-    "jsRules": {
-        "no-unused-expression": true
-    },
-    "rules": {
-        "eofline": false,
-        "quotemark": [
-            true,
-            "single"
-        ],
-        "indent": false,
-        "member-access": [
-            false
-        ],
-        "ordered-imports": [
-            false
-        ],
-        "max-line-length": [
-            true,
-            150
-        ],
-        "member-ordering": [
-            false
-        ],
-        "curly": false,
-        "interface-name": [
-            false
-        ],
-        "array-type": [
-            false
-        ],
-        "no-empty-interface": false,
-        "no-empty": false,
-        "arrow-parens": false,
-        "object-literal-sort-keys": false,
-        "no-unused-expression": false,
-        "max-classes-per-file": [
-            false
-        ],
-        "variable-name": [
-            false
-        ],
-        "one-line": [
-            false
-        ],
-        "one-variable-per-declaration": [
-            false
-        ]
-    },
-    "rulesDirectory": []
+  "defaultSeverity": "error",
+  "extends": ["tslint:latest", "tslint-config-prettier"],
+  "jsRules": {
+      "no-unused-expression": true
+  },
+  "rules": {
+      "no-implicit-dependencies": [true, "dev"],
+      "no-submodule-imports": false,
+      "import-blacklist": [true, "rxjs", "rxjs/Rx"],
+      "eofline": false,
+      "indent": false,
+      "member-access": [true, "no-public"],
+      "ordered-imports": [true],
+      "member-ordering": [false],
+      "curly": false,
+      "interface-name": [true],
+      "array-type": [false],
+      "no-empty-interface": false,
+      "prefer-conditional-expression": false,
+      "no-empty": false,
+      "arrow-parens": false,
+      "object-literal-sort-keys": false,
+      "no-unused-expression": false,
+      "max-classes-per-file": [false],
+      "variable-name": [false],
+      "one-line": [false],
+      "one-variable-per-declaration": [false],
+      "promise-function-async": true,
+      "no-null-keyword": true
+  },
+  "linterOptions": {
+      "exclude": ["src/**/**/*.spec.ts"]
+  },
+  "rulesDirectory": []
 }

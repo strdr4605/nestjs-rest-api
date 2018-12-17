@@ -19,13 +19,13 @@ export class BooksController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() bookJson: string): Promise<BookModel> {
+  update(@Param('id') id: string, @Body() bookJson: string): Promise<BookModel | undefined> {
     const book = plainToClass(BookModel, bookJson);
     return this.booksService.update(id, book);
   }
 
   @Delete(':id')
-  delete(@Param('id') id: string): Promise<BookModel> {
+  delete(@Param('id') id: string): Promise<BookModel | undefined> {
     return this.booksService.delete(id);
   }
 }
