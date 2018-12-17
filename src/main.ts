@@ -12,9 +12,10 @@ async function bootstrap() {
     .setVersion('1.0')
     .addTag('books')
     .addBearerAuth()
+    .setBasePath('api/v1')
     .build();
   const bookDocument = SwaggerModule.createDocument(app, booksOptions, { include: [BooksModule]});
-  SwaggerModule.setup('swagger/books', app, bookDocument);
+  SwaggerModule.setup('api/books', app, bookDocument);
 
   const authorsOptions = new DocumentBuilder()
     .setTitle('Authors API')
@@ -22,9 +23,10 @@ async function bootstrap() {
     .setVersion('1.0')
     .addTag('authors')
     .addBearerAuth()
+    .setBasePath('api/v1')
     .build();
   const authorDocument = SwaggerModule.createDocument(app, authorsOptions, { include: [AuthorsModule]});
-  SwaggerModule.setup('swagger/authors', app, authorDocument);
+  SwaggerModule.setup('api/authors', app, authorDocument);
   app.setGlobalPrefix('api/v1');
   await app.listen(3000);
 }

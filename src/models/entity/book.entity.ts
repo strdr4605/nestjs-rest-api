@@ -1,6 +1,6 @@
-import { Entity, Column, ObjectIdColumn } from 'typeorm';
+import { Entity, Column } from 'typeorm';
 import { GenericModel } from './generic.entity';
-import { IsDate, MinLength, IsString, IsMongoId } from 'class-validator';
+import { IsDate, MinLength, IsString } from 'class-validator';
 import { ApiModelProperty } from '@nestjs/swagger';
 
 @Entity()
@@ -13,8 +13,7 @@ export class BookModel extends GenericModel {
   title: string;
 
   @ApiModelProperty({ type: String, description: `typeorm mongo driver doesn't work with relations`, example: 'author._id' })
-  @ObjectIdColumn()
-  @IsMongoId()
+  @Column()
   author: string;
 
   @ApiModelProperty({minLength: 2, type: String, example: 'iban'})
